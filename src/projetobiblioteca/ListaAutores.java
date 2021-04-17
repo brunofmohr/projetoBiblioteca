@@ -5,7 +5,8 @@ import java.util.ArrayList;
 public class ListaAutores {
 
     private static final ArrayList<Autor> listaAutores = new ArrayList<>();
-
+    private static final ArrayList<Autor> excecaoDeAutoresJaExistente = new ArrayList<>();
+    
     //método Get
     public static ArrayList<Autor> getListaAutores() {
         return listaAutores;
@@ -15,6 +16,9 @@ public class ListaAutores {
     static public void adicionar(Autor a) {
         if (!listaAutores.contains(a)) {
             listaAutores.add(a);
+        }
+        else {
+            excecaoDeAutoresJaExistente.add(a);      
         }
     }
 
@@ -36,6 +40,10 @@ public class ListaAutores {
                     equalsIgnoreCase(nome)) {
                 listaAutores.remove(a);
                 return true;
+            }
+            else {
+                excecaoDeAutoresJaExistente.add(a);
+                return false;
             }
         }
         return false;
